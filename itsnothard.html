@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+<style>
+body {
+    background-color: black;
+}
+.Table {
+    display: table;
+    color: white
+}
+.Title {
+    display: table-caption;
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+	color: #2196F3;
+}
+	.dimmed {
+		color: grey;
+	}	
+.Heading {
+    display: table-row;
+    font-weight: bold;
+    text-align: center;
+}
+.Row {
+    display: table-row;
+}
+.Cell {
+    display: table-cell;
+    border: none;
+    border-width: thin;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+.lives-matter {
+    font-size: xx-large;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+</style>
+</head>
+<body>
+<div class="Table">
+  <div class="Title">
+    <h2>It's not hard to understand</h2>
+  </div>
+  <div class="Row No lives-matter dimmed">
+    <div class="Cell"> No Lives Matter </div>
+    <div class="Cell">
+      <label class="switch">
+        <input id="no-matter" type="checkbox" onChange="noLivesMatter(this)">
+        <span class="slider round"></span> </label>
+    </div>
+  </div>
+  <div class="Row lives-matter">
+    <div class="Cell" id="until"></div>
+    <div class="Cell">
+      <p/>
+    </div>
+  </div>
+  <div class="Row black lives-matter">
+    <div class="Cell">Black Lives Matter </div>
+    <div class="Cell">
+      <label class="switch">
+        <input id="black-matter" type="checkbox"  onChange="doalert(this)" checked>
+        <span class="slider round"></span> </label>
+    </div>
+  </div>
+  <div class="Row womens lives-matter">
+    <div class="Cell">Women's Lives Matter </div>
+    <div class="Cell">
+      <label class="switch">
+        <input id="women-matter" type="checkbox"  onChange="doalert(this)" checked>
+        <span class="slider round"></span> </label>
+    </div>
+  </div>
+  <div class="Row trans lives-matter">
+    <div class="Cell">Trans Lives Matter </div>
+    <div class="Cell">
+      <label class="switch">
+        <input  id="trans-matter" type="checkbox"  onChange="doalert(this)" checked>
+        <span class="slider round"></span> </label>
+    </div>
+  </div>
+  <div class="Row gay lives-matter">
+    <div class="Cell">Gay Lives Matter </div>
+    <div class="Cell">
+      <label class="switch">
+        <input  id="gay-matter" type="checkbox"  onChange="doalert(this)" checked>
+        <span class="slider round"></span> </label>
+    </div>
+  </div>
+  <div class="Row immigrant lives-matter">
+    <div class="Cell">Immigrant Lives Matter </div>
+    <div class="Cell">
+      <label class="switch">
+        <input  id="immigrants-matter" type="checkbox"  onChange="doalert(this)" checked>
+        <span class="slider round"></span> </label>
+    </div>
+  </div>
+  <div class="Row muslim lives-matter">
+    <div class="Cell">Muslim Lives Matter </div>
+    <div class="Cell">
+      <label class="switch">
+        <input  id="muslim-matter" type="checkbox"  onChange="doalert(this)" checked>
+        <span class="slider round"></span> </label>
+    </div>
+  </div>
+  <div class="Row disabled lives-matter">
+    <div class="Cell">Disabled Lives Matter </div>
+    <div class="Cell">
+      <label class="switch">
+        <input  id="disabled-matter" type="checkbox"  onChange="doalert(this)" checked>
+        <span class="slider round"></span> </label>
+    </div>
+  </div>
+  <div class="Row native lives-matter">
+    <div class="Cell">Native Lives Matter </div>
+    <div class="Cell">
+      <label class="switch">
+        <input id="native-matter" type="checkbox"  onChange="doalert(this)" checked>
+        <span class="slider round"></span> </label>
+    </div>
+  </div>
+  <div class="Row old lives-matter">
+    <div class="Cell">Old Lives Matter </div>
+    <div class="Cell">
+      <label class="switch">
+        <input id="old-matter" type="checkbox"  onChange="doalert(this)" checked>
+        <span class="slider round"></span> </label>
+    </div>
+  </div>
+  <div class="Row lives-matter">
+    <div class="Cell"></div>
+    <div class="Cell">
+      <p/>
+    </div>
+  </div>
+  <div class="Row all lives-matter">
+    <div class="Cell">All Lives Matter </div>
+    <div class="Cell">
+      <label class="switch">
+        <input id="all-matter" type="checkbox"  onChange="allMatterCheck(this)" checked>
+        <span class="slider round"></span> </label>
+    </div>
+  </div>
+</div>
+	
+<script>
+
+function dimElement(checkboxElem, flag, forced = false) {
+	if (flag && (checkboxElem.checked || forced)) {
+	checkboxElem.parentElement.parentElement.parentElement.classList.add("dimmed");	
+	} else {
+	checkboxElem.parentElement.parentElement.parentElement.classList.remove("dimmed");
+	}
+}	
+	
+function checkLiveIndicator() {
+	const noMatterInd = document.getElementById("no-matter").checked
+	
+	dimElement(document.getElementById("no-matter"), !noMatterInd, true);
+  dimElement(document.getElementById("black-matter"), noMatterInd);
+  dimElement(document.getElementById("women-matter"), noMatterInd);
+  dimElement(document.getElementById("trans-matter"), noMatterInd);
+  dimElement(document.getElementById("gay-matter"), noMatterInd);
+  dimElement(document.getElementById("immigrants-matter"), noMatterInd);
+  dimElement(document.getElementById("muslim-matter"), noMatterInd);
+  dimElement(document.getElementById("disabled-matter"), noMatterInd);
+  dimElement(document.getElementById("native-matter"), noMatterInd);
+  dimElement(document.getElementById("old-matter"), noMatterInd);
+	dimElement(document.getElementById("all-matter"), noMatterInd, true);
+	
+ if (noMatterInd) {
+	 document.getElementById("until").innerHTML = "Until"
+ }	else {
+	 document.getElementById("until").innerHTML = ""
+ }
+	
+}
+	
+function doalert(checkboxElem) {
+	const noMatterInd = document.getElementById("no-matter").checked
+	
+	const matter = doAllLivesMatter();
+  if (matter) {
+	  document.getElementById("no-matter").checked = false;
+	  document.getElementById("all-matter").checked = true;
+	  
+  }	else {
+	  document.getElementById("no-matter").checked = true;
+	  document.getElementById("all-matter").checked = false;
+  }
+	checkLiveIndicator();
+}
+
+	function doAllLivesMatter() {
+	  return  (document.getElementById("black-matter").checked &&
+	  document.getElementById("women-matter").checked &&
+	  document.getElementById("trans-matter").checked &&
+	  document.getElementById("gay-matter").checked &&
+	  document.getElementById("immigrants-matter").checked &&
+	  document.getElementById("muslim-matter").checked &&
+	  document.getElementById("disabled-matter").checked &&
+	  document.getElementById("native-matter").checked &&
+	  document.getElementById("old-matter").checked);
+	}
+	
+	
+	function allMatterCheck(checkboxElem) {
+  if (checkboxElem.checked) {
+      allMatter();
+  } else {
+      noMatter();
+  }
+		checkLiveIndicator();
+}
+	
+function noLivesMatter(checkboxElem) {
+  if (checkboxElem.checked) {
+	  noMatter();
+  } else {
+       allMatter();
+  }
+	checkLiveIndicator();
+}
+	
+	function noMatter() {
+	  document.getElementById("no-matter").checked = true;
+	  document.getElementById("black-matter").checked = false;
+	  document.getElementById("women-matter").checked = false;
+	  document.getElementById("trans-matter").checked = false;
+	  document.getElementById("gay-matter").checked = false;
+	  document.getElementById("immigrants-matter").checked = false;
+	  document.getElementById("muslim-matter").checked = false;
+	  document.getElementById("disabled-matter").checked = false;
+	  document.getElementById("native-matter").checked = false;
+	  document.getElementById("old-matter").checked = false;
+	  document.getElementById("all-matter").checked = false;
+	}
+	
+	function allMatter() {
+	  document.getElementById("no-matter").checked = false;
+	  document.getElementById("black-matter").checked = true;
+	  document.getElementById("women-matter").checked = true;
+	  document.getElementById("trans-matter").checked = true;
+	  document.getElementById("gay-matter").checked = true;
+	  document.getElementById("immigrants-matter").checked = true;
+	  document.getElementById("muslim-matter").checked = true;
+	  document.getElementById("disabled-matter").checked = true;
+	  document.getElementById("native-matter").checked = true;
+	  document.getElementById("old-matter").checked = true;
+	  document.getElementById("all-matter").checked = true;
+	}
+	
+	allMatter();
+	
+</script>	
+	
+	
+</body>
+</html>
